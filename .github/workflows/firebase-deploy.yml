@@ -10,11 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Additional steps for building/testing your application can go here.
+      # Install dependencies in the root directory, if necessary
+      - name: Install Root Dependencies
+        run: npm install
+        working-directory: ./ # Adjust this path if your root package.json is in a different directory
 
-      # Install Firebase CLI
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+      # Install dependencies in the functions directory
+      - name: Install Functions Dependencies
+        run: npm install
+        working-directory: ./functions # Adjust this path to point to your functions directory
 
       # Deploy to Firebase Hosting and Functions
       - name: Firebase Deploy
