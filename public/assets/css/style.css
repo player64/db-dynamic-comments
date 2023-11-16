@@ -1,0 +1,24 @@
+.comment {
+    margin-bottom: 1rem;
+    padding: 1.5rem 2rem;
+    border-radius: 1rem;
+    background-color: var(--bs-gray-100);
+}
+
+.comment__name {
+    font-size: 1.3rem;
+    color: var(--bs-primary);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.comment__content {
+    color: var(--bs-gray-600)
+}
+
+.error {
+    color: red;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
