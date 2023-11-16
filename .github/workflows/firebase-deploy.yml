@@ -1,23 +1,23 @@
-name: Deploy to Firebase Hosting on push to master
+name: Deploy to Firebase Hosting and Functions on push to master
 'on':
   push:
     branches:
       - master
 
 jobs:
-  build_and_preview:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
       # Additional steps for building/testing your application can go here.
-      # For example, installing dependencies, running tests, building your application, etc.
 
-      # Use Firebase CLI to deploy to a specific channel
-      - name: Firebase Deploy to Channel
-        run: |
-          npm install -g firebase-tools
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_DB_DYNAMIC_COMMENTS }}" | firebase login:ci
-          firebase hosting:channel:deploy your-channel-id --expires 7d --project db-dynamic-comments --json
+      # Install Firebase CLI
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # Deploy to Firebase Hosting and Functions
+      - name: Firebase Deploy
+        run: firebase deploy --only hosting,functions --token ${{ secrets.FIREBASE_TOKEN }} --project db-dynamic-comments
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
