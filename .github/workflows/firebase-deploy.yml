@@ -10,11 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Install dependencies in the root directory, if necessary
-      - name: Install Root Dependencies
-        run: npm install
-        working-directory: ./ # Adjust this path if your root package.json is in a different directory
-
       # Install dependencies in the functions directory
       - name: Install Functions Dependencies
         run: npm install
