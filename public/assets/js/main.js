@@ -113,6 +113,18 @@ function renderComments() {
         const div = document.createElement("div");
         div.classList.add('comment');  // Add a CSS class for styling.
 
+
+        // create date
+        const dateElement = document.createElement('time');
+
+        const date = new Date(comment.timestamp['_seconds'] * 1000);
+
+        console.log(comment.timestamp['_seconds'])
+
+        dateElement.classList.add('comment__date');
+        dateElement.innerHTML = 'Posted at:' + date.toLocaleString('en-IE', {timeZone: 'Europe/Dublin'});
+        div.appendChild(dateElement);
+
         // Create a new div for the comment name,  add a CSS class for styling, fill with actual comment and append to the parent
         const commentName = document.createElement('div');
         commentName.classList.add('comment__name');
@@ -166,6 +178,25 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Display all the comments on the page.
     //
     await getComments();
+
+
+    const charCount = document.getElementById('charCount');
+    const maxChars = 280;
+
+    commentField.addEventListener('input', function () {
+        let remaining = maxChars - commentField.value.length;
+
+
+        if (remaining <= 0) {
+            charCount.classList.add('limit-exceeded');
+            remaining = 0
+        } else {
+            charCount.classList.remove('limit-exceeded');
+
+        }
+
+        charCount.textContent = `${remaining} characters remaining`;
+    });
 
     // Attach an event listener to the form to handle comment submissions.
     form.addEventListener('submit', postComment)
