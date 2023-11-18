@@ -6,7 +6,7 @@ const commentsWrapper = document.getElementById('comments')
 const errors = document.querySelector('.errors')
 
 // initialise comment array with some comments
-const comments = [
+let comments = [
     {
         name: '@alexa',
         comment: "It's a great website, layout is user-friendly, and the resources available are top-notch. Highly recommended for everyone!"
@@ -21,8 +21,34 @@ const comments = [
     }
 ]
 
+async function submitComment(data) {
+    try {
+        const response = await fetch('https://postcomment-siywgi3smq-uc.a.run.app', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+
+        if (response.ok) {
+            const responseJson = await response.json()
+            if ('data' in responseJson) {
+                // Push comment to the array of comments
+                comments.push(responseJson.data)
+
+                // render comments
+                renderComments()
+            }
+        }
+    } catch (e) {
+        const errorJson = await e.json()
+        console.log(errorJson)
+    }
+}
+
 // This function handles the posting of a user comment.
-function postComment(event) {
+async function postComment(event) {
     // prevent the default form action
     event.preventDefault()
 
@@ -54,7 +80,7 @@ function postComment(event) {
     let comment = commentField.value
 
     // remove any white spaces
-    comment =  comment.trim()
+    comment = comment.trim()
 
     // check if the comment is empty and if so display the error
     if (comment === '') {
@@ -69,17 +95,11 @@ function postComment(event) {
     nameField.value = ''
     commentField.value = ''
 
-    // Push comment to the array of comments
-    comments.push({
-        name: '@' + name,
+
+    await submitComment({
+        name: name,
         comment: comment
     })
-
-    // Display all the comments on the page.
-    renderComments()
-
-    // Output the current state of comments to the console
-    console.log(comments)
 }
 
 // This function renders comments on the page.
@@ -88,7 +108,7 @@ function renderComments() {
     commentsWrapper.textContent = ''
 
     // Loop through each comment in the comments array.
-    comments.forEach((comment) => {
+    comments.reverse().forEach((comment) => {
         // Create a new div to hold the entire comment.
         const div = document.createElement("div");
         div.classList.add('comment');  // Add a CSS class for styling.
@@ -119,10 +139,33 @@ function addError(msg) {
     errors.appendChild(errorDiv)
 }
 
+
+// https://postcomment-siywgi3smq-uc.a.run.app
+// Function URL (getComments(us-central1)): https://getcomments-siywgi3smq-uc.a.run.app
+
+
+async function getComments() {
+    try {
+        const response = await fetch('https://getcomments-siywgi3smq-uc.a.run.app', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        })
+
+        comments = await response.json()
+        renderComments()
+
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 // This code runs once the page's DOM is fully loaded.
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
     // Display all the comments on the page.
-    renderComments()
+    //
+    await getComments();
 
     // Attach an event listener to the form to handle comment submissions.
     form.addEventListener('submit', postComment)

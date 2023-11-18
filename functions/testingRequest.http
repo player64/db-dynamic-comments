@@ -1,0 +1,39 @@
+###
+POST https://postcomment-siywgi3smq-uc.a.run.app
+Content-Type: application/json
+
+{
+  "name": "sean",
+  "comment": "Everything is so accessible, and the regular updates keep everything relevant."
+}
+
+###
+POST http://127.0.0.1:5001/db-dynamic-comments/us-central1/postComment
+Content-Type: application/json
+
+{
+  "name": "hacker",
+  "comment": "It's a great website, layout is user-friendly, and the resources available are top-notch. Highly recommended for everyone!"
+}
+
+###
+POST http://127.0.0.1:5001/db-dynamic-comments/us-central1/postComment
+Content-Type: application/json
+
+{
+  "name": "ryan",
+  "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut hendrerit, mauris at aliquet lacinia, velit est sollicitudin nunc, nec sodales nibh odio sed nisi. Donec vel fringilla diam. Quisque ut maximus velit, non elementum lorem. Sed eget justo auctor, fermentum lorem at, efficitur nisl. Maecenas vestibulum, mauris sed."
+}
+
+###
+GET http://127.0.0.1:5001/db-dynamic-comments/us-central1/getComments
+
+
+###
+POST http://127.0.0.1:5001/db-dynamic-comments/us-central1/postComment
+Content-Type: application/json
+
+{
+  "name": "sean",
+  "comment": "Everything is so accessible, and the regular updates keep everything relevant."
+}

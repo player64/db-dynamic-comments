@@ -8,12 +8,24 @@
  */
 
 const {onRequest} = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
+const {Comments} = require("./Comments");
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// 'https://db-dynamic-comments.web.app'
 
-exports.helloWorld = onRequest((request, response) => {
-  logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
+const cors = require('cors')({origin: '*'});
+
+
+const commentsEntity = new Comments();
+
+
+exports.postComment = onRequest((request, response) => {
+    cors(request, response, async () => {
+        await commentsEntity.post(request, response);
+    });
+});
+
+exports.getComments = onRequest((request, response) => {
+    cors(request, response, async () => {
+        await commentsEntity.get(request, response);
+    });
 });
