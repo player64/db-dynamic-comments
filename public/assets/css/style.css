@@ -1,3 +1,13 @@
+.app-header {
+    background-color: var(--bs-gray-100);
+    text-align: center;
+}
+
+.app-header__link {
+    display: inline-block;
+    margin: 1rem auto;
+}
+
 .comment {
     margin-bottom: 1rem;
     padding: 1.5rem 2rem;
@@ -36,3 +46,4 @@
         color: var(--bs-danger);
     }
 }
+

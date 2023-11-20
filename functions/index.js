@@ -10,9 +10,9 @@
 const {onRequest} = require("firebase-functions/v2/https");
 const {Comments} = require("./Comments");
 
-// 'https://db-dynamic-comments.web.app'
-// Enabling Cross-Origin Resource Sharing (CORS) with a wildcard, allowing requests from any origin
-const cors = require('cors')({origin: '*'});
+//
+// Enabling Cross-Origin Resource Sharing (CORS) allowing requests from the frontend origin only
+const cors = require('cors')({origin: 'https://db-dynamic-comments.web.app'});
 
 // Creating an instance of the Comments class to handle comment-related operations
 const commentsEntity = new Comments();

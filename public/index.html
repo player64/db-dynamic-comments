@@ -9,38 +9,61 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-<div class="container pb-5 pt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-7 col-md-8 col-12">
-            <div class="text-center mb-5">
-                <h1 class="text-primary">Comments app</h1>
-                <p>Feel free to leave your comment</p>
-            </div>
+<header class="app-header pt-3">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-8 col-12">
+                <div class="app-header__disclaimer">
+                    This project is created for educational purposes only. It is not affiliated with, nor does it
+                    represent, any company or organization. The application and its source code are intended as a
+                    demonstration of coding practices and for learning and exploration of web development concepts.
+                </div>
 
-            <div id="comments"></div>
-
-            <div class="form-wrapper mt-5">
-                <h3 class="mb-3">Post your comment</h3>
-                <form id="commentForm">
-                    <div class="mb-3">
-                        <label class="form-label" for="username">Username</label>
-                        <input class="form-control" type="text" name="username" id="username" placeholder="e.g. @user">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="comment">Comment</label>
-                        <textarea maxlength="280" class="form-control" id="comment" name="comment" placeholder="Enter your comment here"></textarea>
-                        <div id="charCount">280 characters remaining</div>
-                    </div>
-                    <div class="mb-3">
-                        <div class="errors text-sm"></div>
-                    </div>
-
-                    <button class="btn btn-primary" type="submit">Post comment</button>
-                </form>
+                <a href="https://github.com/player64/db-dynamic-comments" target="_blank" rel="nofollow"
+                   class="app-header__link">
+                    <img src="assets/icons/github.svg" width="60" height="60" alt="GitHub icon">
+                </a>
             </div>
         </div>
     </div>
-</div>
+</header>
+<main>
+    <div class="container pb-5 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-8 col-12">
+                <div class="text-center mb-5">
+                    <h1 class="text-primary">Comments app</h1>
+                    <p>Feel free to leave your comment</p>
+                </div>
+
+                <div id="comments"></div>
+
+                <div class="form-wrapper mt-5">
+                    <h3 class="mb-3">Post your comment</h3>
+                    <form id="commentForm">
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" name="username" id="username"
+                                   placeholder="e.g. @user">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="comment">Comment</label>
+                            <textarea maxlength="280" class="form-control" id="comment" name="comment"
+                                      placeholder="Enter your comment here"></textarea>
+                            <div id="charCount">280 characters remaining</div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="errors text-sm"></div>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Post comment</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
 <script src="assets/js/main.js"></script>
 </body>
 </html>
